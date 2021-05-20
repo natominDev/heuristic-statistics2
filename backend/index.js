@@ -5,8 +5,19 @@ const port = process.env.PORT || 3001;
 
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-app.get('/api', (req, res) => {
-    res.json({ message: "Hello World!" });
+app.get('/api/finalRatings', (req, res) => {
+    const ratingData = require('./datas/finalRatings.json')
+    res.json(ratingData);
+});
+
+app.get('/api/ahc1', (req, res) => {
+    const ahc1 = require('./datas/ahc1.json')
+    res.json(ahc1);
+});
+
+app.get('/api/ahc2', (req, res) => {
+    const ahc2 = require('./datas/ahc2.json')
+    res.json(ahc2);
 });
 
 app.get('*', (req, res) => {
@@ -15,4 +26,4 @@ app.get('*', (req, res) => {
 
 app.listen(port, () => {
     console.log(`listening on *:${port}`);
-})
+});
