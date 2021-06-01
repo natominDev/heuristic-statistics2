@@ -3,6 +3,24 @@ import { Bar } from 'react-chartjs-2';
 import './App.css';
 
 function Graph (props) {
+
+    const distribution = [];
+
+    for(let i = 0; i < props.distData.length; ++i){
+        distribution.push(props.distData[i].number);
+    }
+/*
+    useEffect(() => {
+        let rating = -1;
+        for(let i = 0; i < props.distData.length; ++i){
+            if(props.ratingData[i].name == props.userName){
+                rating = props.ratingData[i].performance;
+            }
+        }
+        if(rating == -1) rating = 0;
+        props.setRating(rating);
+    })
+*/
     const graphData = {
         labels: [
             ['0'],['100'],['200'],['300'],['400'],['500'],['600'],['700'],['800'],['900'],
@@ -11,11 +29,13 @@ function Graph (props) {
         ],
         datasets: [
             {
-                data: [
+                data: distribution
+                /*[
                     421,293,194,138,99,86,106,87,79,84,
                     57,64,37,49,26,14,14,7,9,9,
                     7,5,4,0,2,1,0,1,0,0,
-                ],
+                ]
+                */,
                 backgroundColor: [
                     //gray
                     `rgba(130, 130, 130, ${(0 <= props.userRating && props.userRating < 100) ? 1 : 0.5})`,

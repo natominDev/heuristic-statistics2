@@ -7,6 +7,7 @@ function App() {
   const [userName, setName] = useState("User");
   const [userRating, setRating] = useState("0");
   const [ratingData, setRatingData] = useState('');
+  const [distData, setDistData] = useState('');
   //const [data_ahc1, setDataAhc1] = useState('');
   //const [data_ahc2, setDataAhc2] = useState('');
 
@@ -14,6 +15,12 @@ function App() {
     fetch('/api/finalRatings')
       .then((res) => res.json())
       .then((datas) => setRatingData(datas.data));
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/distribution')
+      .then((res) => res.json())
+      .then((datas) => setDistData(datas.data));
   }, [])
 /*
   useEffect(() => {
@@ -37,7 +44,7 @@ function App() {
           ユーザ名を入力すると，分布における該当ユーザの位置にハイライトします．
         </h6>
         <InputForm userName={userName} userRating={userRating} setName={setName} setRating={setRating} ratingData={ratingData}/>
-        <Graph userRating={userRating}/>
+        <Graph userRating={userRating} distData={distData}/>
       </div>
     </div>
   );

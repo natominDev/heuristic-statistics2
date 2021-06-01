@@ -10,6 +10,11 @@ app.get('/api/finalRatings', (req, res) => {
     res.json(ratingData);
 });
 
+app.get('/api/distribution', (req, res) => {
+    const distData = require('./datas/distribution.json')
+    res.json(distData);
+});
+
 app.get('/api/ahc1', (req, res) => {
     const ahc1 = require('./datas/ahc1.json')
     res.json(ahc1);
